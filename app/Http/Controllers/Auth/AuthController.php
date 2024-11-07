@@ -115,5 +115,6 @@ class AuthController extends Controller
 
             return Redirect('login');  // Redirect to login page after logout
         }
+        
 
 }
