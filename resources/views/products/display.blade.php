@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="index.html" class="app-brand-link">
               <span class="app-brand-logo demo">
@@ -47,12 +49,12 @@
                 <span class="badge rounded-pill bg-danger ms-auto">5</span>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item active">
+                <li class="menu-item ">
                   <a href="{{ route('dashboard')}}" class="menu-link">
                     <div class="text-truncate" data-i18n="Analytics">Analytics</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                   <a
                    href="{{ route('products.index') }}"
                     class="menu-link">
@@ -94,44 +96,30 @@
             
           </ul>
         </aside>
-<div class="container-xxl flex-grow-1 container-p-y">
-    <div class="row">
-        <div class="col-xxl-8 mb-6 order-0">
-            <div class="card">
-                <div class="d-flex align-items-start row">
-                  <div class="col-sm-7">
-                    <div class="card-body">
-                      <h5 class="card-title text-primary mb-3">Congratulations {{ auth()->user()->name }} 🎉</h5>
-                      
-
-                      <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
-                    </div>
-                  </div>
-                  <div class="col-sm-5 text-center text-sm-left">
-                    <div class="card-body pb-0 px-0 px-md-6">
-                      <img
-                        src="../assets/img/illustrations/man-with-laptop.png"
-                        height="175"
-                        class="scaleX-n1-rtl"
-                        alt="View Badge User" />
-                    </div>
-              </div>
-        </div>
-    </div>
-</div>
 <div class="container py-4">
-    <header class="pb-3 mb-4 border-bottom">
-        <div class="row">
-        </div>
-    </header>
-
-    <!-- Flash Success Message -->
-    @if(session('success'))
-        <div class="alert alert-success" role="alert"> 
-            {{ session('success') }}
-        </div>
-    @endif
-
+  
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Unit</th>
+                <th>Price</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(isset($products))
+                @foreach($products as $product)
+                    <tr>
+                        <td>{{ $product->product_name }}</td>
+                        <td>{{ $product->unit }}</td>
+                        <td>{{ $product->price }}</td>
+                        <td>{{ $product->qty }}</td>
+                    </tr>
+                @endforeach
+            @endif
+        </tbody>
+    </table>
    
 </div>
 @endsection

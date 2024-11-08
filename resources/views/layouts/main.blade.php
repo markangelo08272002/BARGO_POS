@@ -14,7 +14,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - BARGO POS</title>
+    <title>Demo : Dashboard - Analytics | sneat - Bootstrap Dashboard PRO</title>
 
     <meta name="description" content="" />
 
@@ -52,162 +52,7 @@
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
-        <!-- Menu -->
-
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-          <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
-             
-              <span class="app-brand-text demo menu-text fw-bold ms-2">BARGO POS</span>
-            </a>
-
-            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-              <i class="bx bx-chevron-left bx-sm d-flex align-items-center justify-content-center"></i>
-            </a>
-          </div>
-
-          <div class="menu-inner-shadow"></div>
-
-          <ul class="menu-inner py-1">
-            <!-- Dashboards -->
-            <li class="menu-item active open">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-home-smile"></i>
-                <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
-                <span class="badge rounded-pill bg-danger ms-auto">5</span>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item active">
-                  <a href="{{ route('dashboard')}}" class="menu-link">
-                    <div class="text-truncate" data-i18n="Analytics">Analytics</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/dashboards-crm.html"
-                    target="_blank"
-                    class="menu-link">
-                    <div class="text-truncate" data-i18n="CRM">CRM</div>
-                    <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-ecommerce-dashboard.html"
-                    target="_blank"
-                    class="menu-link">
-                    <div class="text-truncate" data-i18n="eCommerce">eCommerce</div>
-                    <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-logistics-dashboard.html"
-                    target="_blank"
-                    class="menu-link">
-                    <div class="text-truncate" data-i18n="Logistics">Logistics</div>
-                    <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="app-academy-dashboard.html" target="_blank" class="menu-link">
-                    <div class="text-truncate" data-i18n="Academy">Academy</div>
-                    <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <!-- Layouts -->
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div class="text-truncate" data-i18n="Layouts">Layouts</div>
-              </a>
-
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="layouts-without-menu.html" class="menu-link">
-                    <div class="text-truncate" data-i18n="Without menu">Without menu</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-without-navbar.html" class="menu-link">
-                    <div class="text-truncate" data-i18n="Without navbar">Without navbar</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-fluid.html" class="menu-link">
-                    <div class="text-truncate" data-i18n="Fluid">Fluid</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-container.html" class="menu-link">
-                    <div class="text-truncate" data-i18n="Container">Container</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-blank.html" class="menu-link">
-                    <div class="text-truncate" data-i18n="Blank">Blank</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <!-- Front Pages -->
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-store"></i>
-                <div class="text-truncate" data-i18n="Front Pages">Front Pages</div>
-                <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/landing-page.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div class="text-truncate" data-i18n="Landing">Landing</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/pricing-page.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div class="text-truncate" data-i18n="Pricing">Pricing</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/payment-page.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div class="text-truncate" data-i18n="Payment">Payment</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/checkout-page.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div class="text-truncate" data-i18n="Checkout">Checkout</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a
-                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/front-pages/help-center-landing.html"
-                    class="menu-link"
-                    target="_blank">
-                    <div class="text-truncate" data-i18n="Help Center">Help Center</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-           
-          </ul>
-        </aside>
+        
         <!-- / Menu -->
 
         <!-- Layout container -->
@@ -239,8 +84,7 @@
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
-                <li class="nav-item lh-1 me-4">
-                </li>
+                
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -253,7 +97,7 @@
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
+                     <li>
                       <a class="dropdown-item" href="#">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
@@ -292,7 +136,7 @@
                       <div class="dropdown-divider my-1"></div>
                     </li>
                     <li>
-                <a class="dropdown-item" href="{{ route('logout') }}" 
+                     <a class="dropdown-item" href="{{ route('logout') }}" 
                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                    {{ __('Logout') }}
                 </a>
@@ -310,39 +154,16 @@
           </nav>
 
           <!-- / Navbar -->
-<div class="container-xxl flex-grow-1 container-p-y">
-              <div class="row">
-                <div class="col-xxl-8 mb-6 order-0">
-                  <div class="card">
-                    <div class="d-flex align-items-start row">
-                      <div class="col-sm-7">
-                        <div class="card-body">
-                          <h5 class="card-title text-primary mb-3">Congratulations {{ auth()->user()->name }} 🎉</h5>
-                          
-
-                          <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
-                        </div>
-                      </div>
-                      <div class="col-sm-5 text-center text-sm-left">
-                        <div class="card-body pb-0 px-0 px-md-6">
-                          <img
-                            src="../assets/img/illustrations/man-with-laptop.png"
-                            height="175"
-                            class="scaleX-n1-rtl"
-                            alt="View Badge User" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+ 
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-  @yield('content')
+
+               @yield('content')
             <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
+             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl">
                 <div
                   class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
@@ -373,7 +194,6 @@
     <!-- / Layout wrapper -->
 
    
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
 
