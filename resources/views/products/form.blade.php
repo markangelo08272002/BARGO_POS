@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
-<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+<!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="index.html" class="app-brand-link">
               <span class="app-brand-logo demo">
@@ -47,12 +49,12 @@
                 <span class="badge rounded-pill bg-danger ms-auto">5</span>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item active">
+                <li class="menu-item ">
                   <a href="{{ route('dashboard')}}" class="menu-link">
                     <div class="text-truncate" data-i18n="Analytics">Analytics</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                   <a
                    href="{{ route('products.index') }}"
                     class="menu-link">
@@ -70,7 +72,8 @@
                 </li>
                 <li class="menu-item">
                   <a
-                    href="{{ route('users') }}"
+                    href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-logistics-dashboard.html"
+                    target="_blank"
                     class="menu-link">
                     <div class="text-truncate" data-i18n="Logistics">Logistics</div>
                     <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
@@ -92,46 +95,54 @@
             
           </ul>
         </aside>
+<div class="container">
+        <br>
 
-<div class="container-xxl flex-grow-1 container-p-y">
-   <!-- Flash Success Message -->
-    @if(session('success'))
-        <div class="alert alert-success" role="alert"> 
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="row">
-        <div class="col-xxl-8 mb-6 order-0">
-            <div class="card">
-                <div class="d-flex align-items-start row">
-                  <div class="col-sm-7">
+        <form action="{{ isset($product) ? route('products.update', $product->id) : route('products.store') }}" method="POST">
+            @csrf
+            @if(isset($product))
+                @method('PUT')
+            @endif
+            <div class="col-md-6">
+                  <div class="card">
+                    <h5 class="card-header">{{ isset($product) ? 'Edit Product' : 'Create Product' }}</h5>
                     <div class="card-body">
-                      <h5 class="card-title text-primary mb-3">Congratulations {{ auth()->user()->name }} 🎉</h5>
-                      
-
-                      <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
+                      <div class="form-floating">
+                       <input placeholder="unsay name sa product" type="text" class="form-control" id="product_name" name="product_name" value="{{ old('product_name', $product->product_name ?? '') }}" required>
+                       <label for="product_name">Product Name</label>
+                      </div><br>
+                       <div class="form-floating">
+                        <input placeholder="pila ka unit" type="number" class="form-control" id="unit" name="unit" value="{{ old('unit', $product->unit ?? '') }}" required>
+                        <label for="unit">Unit</label>
+                      </div><br>
+                       <div class="form-floating">
+                        <input placeholder="tagpila" type="number" class="form-control" id="price" name="price" value="{{ old('price', $product->price ?? '') }}" required>
+                         <label for="price">Price</label>
+                      </div><br>
+                       <div class="form-floating">
+                        <input placeholder="pila kabook" type="number" class="form-control" id="qty" name="qty" value="{{ old('qty', $product->qty ?? '') }}" required>
+                        <label for="qty">Quantity</label>
+                      </div><br>
+                      <div class="form-floating">
+                        <select class="form-control" id="category_id" name="category_id" required>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ (isset($product) && $product->category_id == $category->id) ? 'selected' : '' }}>
+                                {{ $category->category_name }} <!-- Correct field name -->
+                            </option>
+                        @endforeach
+                        </select> <br>
+                        <label for="category_id">Category</label>
+                         <button type="submit" class="btn btn-primary">{{ isset($product) ? 'Update Product' : 'Create Product' }}</button>
+                         <a class="btn btn-secondary" href="{{ route('products.index') }}">Back</a>
+        
+                      </div>
                     </div>
                   </div>
-                  <div class="col-sm-5 text-center text-sm-left">
-                    <div class="card-body pb-0 px-0 px-md-6">
-                      <img
-                        src="../assets/img/illustrations/man-with-laptop.png"
-                        height="175"
-                        class="scaleX-n1-rtl"
-                        alt="View Badge User" />
-                    </div>
-              </div>
-        </div>
-    </div>
-</div>
-<div class="container py-4">
-    <header class="pb-3 mb-4 border-bottom">
-        <div class="row">
-        </div>
-    </header>
+                </div>
+                </form>
 
-   
-   
-</div>
+           
+
+
+            
 @endsection

@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-<!-- Menu -->
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="index.html" class="app-brand-link">
@@ -53,7 +52,7 @@
                     <div class="text-truncate" data-i18n="Analytics">Analytics</div>
                   </a>
                 </li>
-                <li class="menu-item active">
+                <li class="menu-item">
                   <a
                    href="{{ route('products.index') }}"
                     class="menu-link">
@@ -61,7 +60,7 @@
                     <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">New</div>
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item active">
                   <a
                     href="{{ route('categories.index') }}"
                     class="menu-link">
@@ -95,151 +94,129 @@
           </ul>
         </aside>
 
+<!-- Categories Table -->
 <div class="container py-4">
-    <a class="btn btn-primary" href="{{ route('products.create') }}">Add New Product</a><br><br>
-
-    <div class="card">
-                <h5 class="card-header">Product</h5>
+    <a class="btn btn-primary" href="javascript:void(0);" onclick="showCreateModal()">Add New Category</a>
+    <br><br>
+<div class="card">
+                <h5 class="card-header">Categories</h5>
                 @if(session('success'))
-        <div class="alert alert-success" role="alert"> 
-            {{ session('success') }}
-        </div>
-    @endif
+ <div class="alert alert-success" role="alert"> 
+    {{ session('success') }}
+</div>
+@endif
                 <div class="table-responsive text-nowrap">
                   <table class="table">
                     <thead class="table-dark">
-            <tr>
-                <th>Product Name</th>
-                <th>Unit</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Category</th>
-                <th>Actions</th>
-            </tr>
-       </thead>
-        <tbody class="table-border-bottom-0">
-            @if(isset($products))
-                @foreach($products as $product)
-                    <tr>
-                        <td>{{ $product->product_name }}</td>
-                        <td>{{ $product->unit }}</td>
-                        <td>{{ $product->price }}</td>
-                        <td>{{ $product->qty }}</td>
-                        <td>{{ $product->category->category_name }}</td>
-                        <td>
-                          <div class="dropdown">
+                      <tr>
+                        <th>Category Name</th>
+                        <th>Short Description</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                      @foreach ($categories as $category)
+                      <tr>
+            <td>{{ $category->category_name }}</td>
+            <td>{{ $category->short_description }}</td>
+            <td>
+              <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                               <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
-                             <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#editProductModal"
-                               data-id="{{ $product->id }}"
-                               data-name="{{ $product->product_name }}"
-                               data-unit="{{ $product->unit }}"
-                               data-price="{{ $product->price }}"
-                               data-quantity="{{ $product->qty }}"
-                               data-category-id="{{ $product->category->id }}"><i class="bx bx-edit-alt me-1"></i>Edit</a>
-                              <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button class="dropdown-item" type="submit"><i class="bx bx-trash me-1"></i>Delete</button>
-                            </form>
-
+                              <a href="javascript:void(0);" onclick="showEditModal({{ $category->id }}, '{{ $category->category_name }}', '{{ $category->short_description }}')" class="dropdown-item"><i class="bx bx-edit-alt me-1"></i>Edit</a>
+                              <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display:inline;">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button type="submit" class="dropdown-item" btn-sm"><i class="bx bx-trash me-1"></i>Delete</button>
+                              </form>
                             </div>
-                          </div>
-                            </td>
-                           </tr>
-                      @endforeach
-                      @endif
-                      </tbody>
-                    </table>
-                  </div>
-                        </div>
+                </div>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+</div></div>
+</div>
 
-                        
-                        
-                    
-
-<!-- Modal for Editing Product -->
-<div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<!-- Create Category Modal -->
+<div class="modal fade" id="createCategoryModal" tabindex="-1" role="dialog" aria-labelledby="createCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editProductModalLabel">Edit Product</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- Edit Product Form -->
-                <form id="editProductForm" action="{{ route('products.update', 'product_id') }}" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <input type="hidden" id="productId" name="product_id">
+            <form action="{{ route('categories.store') }}" method="POST">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createCategoryModalLabel">Create New Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
                     <div class="mb-3">
-                        <label for="productName" class="form-label">Product Name</label>
-                        <input type="text" class="form-control" id="productName" name="product_name" required>
+                        <label for="create_category_name" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" id="create_category_name" name="category_name" required>
                     </div>
                     <div class="mb-3">
-                        <label for="unit" class="form-label">Unit</label>
-                        <input type="text" class="form-control" id="unit" name="unit" required>
+                        <label for="create_short_description" class="form-label">Short Description</label>
+                        <textarea class="form-control" id="create_short_description" name="short_description" rows="3" required></textarea>
                     </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Price</label>
-                        <input type="number" class="form-control" id="price" name="price" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" name="qty" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Category</label>
-                        <select class="form-control" id="category" name="category_id" required>
-                            <option value="">Select Category</option>
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Create Category</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
-<!-- JavaScript for Handling Modal Data -->
+<!-- Edit Category Modal -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <form id="editCategoryForm" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="edit_category_name" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" id="edit_category_name" name="category_name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_short_description" class="form-label">Short Description</label>
+                        <textarea class="form-control" id="edit_short_description" name="short_description" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
-    var editProductModal = document.getElementById('editProductModal');
-    editProductModal.addEventListener('show.bs.modal', function (event) {
-        // Get data attributes from the edit button
-        var button = event.relatedTarget; 
-        var productId = button.getAttribute('data-id');
-        var productName = button.getAttribute('data-name');
-        var unit = button.getAttribute('data-unit');
-        var price = button.getAttribute('data-price');
-        var quantity = button.getAttribute('data-quantity');
-        var categoryId = button.getAttribute('data-category-id'); // Add this data attribute for category ID
+    // Function to show the create modal
+    function showCreateModal() {
+        const modal = new bootstrap.Modal(document.getElementById('createCategoryModal'));
+        modal.show();
+    }
 
-        // Set the values in the modal form
-        var modal = editProductModal.querySelector('.modal-body #productId');
-        var nameField = editProductModal.querySelector('.modal-body #productName');
-        var unitField = editProductModal.querySelector('.modal-body #unit');
-        var priceField = editProductModal.querySelector('.modal-body #price');
-        var quantityField = editProductModal.querySelector('.modal-body #quantity');
-        var categoryField = editProductModal.querySelector('.modal-body #category');
-
-        modal.value = productId;
-        nameField.value = productName;
-        unitField.value = unit;
-        priceField.value = price;
-        quantityField.value = quantity;
-
-        // Set the selected category
-        categoryField.value = categoryId; // Set the category ID to the select field
-
-        // Update the form action URL with the product ID
-        var formAction = document.getElementById('editProductForm').action;
-        document.getElementById('editProductForm').action = formAction.replace('product_id', productId);
-    });
+    // Function to show the edit modal and set form action and field values
+    function showEditModal(id, categoryName, shortDescription) {
+        const modal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
+        modal.show();
+        
+        // Set form values for editing
+        document.getElementById('editCategoryForm').action = '/categories/' + id;
+        document.getElementById('edit_category_name').value = categoryName;
+        document.getElementById('edit_short_description').value = shortDescription;
+    }
 </script>
 
 @endsection

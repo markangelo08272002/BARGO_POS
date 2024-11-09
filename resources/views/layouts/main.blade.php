@@ -52,6 +52,8 @@
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
       <div class="layout-container">
+        <!-- Menu -->
+
         
         <!-- / Menu -->
 
@@ -84,7 +86,7 @@
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
                 <!-- Place this tag where you want the button to render. -->
-                
+               
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -97,7 +99,7 @@
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                     <li>
+                    <li>
                       <a class="dropdown-item" href="#">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
@@ -105,7 +107,7 @@
                               <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
-                          <div class="flex-grow-1">
+                           <div class="flex-grow-1">
                             <h6 class="mb-0">{{ auth()->user()->name }}</h6>
                             <small class="text-muted">Admin</small>
                           </div>
@@ -154,27 +156,18 @@
           </nav>
 
           <!-- / Navbar -->
- 
+
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
 
-               @yield('content')
+            @yield('content')
             <!-- / Content -->
 
             <!-- Footer -->
-             <footer class="content-footer footer bg-footer-theme">
+            <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl">
-                <div
-                  class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                  <div class="text-body">
-                    ©
-                    <script>
-                      document.write(new Date().getFullYear());
-                    </script>
-                     MARK ANGELO
-
-                  </div>
+                
                  
                 </div>
               </div>
@@ -193,7 +186,8 @@
     </div>
     <!-- / Layout wrapper -->
 
-   
+    
+
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
 

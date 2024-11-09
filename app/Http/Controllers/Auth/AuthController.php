@@ -115,7 +115,31 @@ class AuthController extends Controller
 
             return Redirect('login');  // Redirect to login page after logout
     }
-      
+   public function showUsers()
+{
+    $users = User::all();
+    return view('users', compact('users')); // Make sure this matches the file path in resources/views/auth/
+}
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->name = $request->input('name');
+        $user->id_number = $request->input('id_number');
+        $user->email = $request->input('email');
+        $user->save();
+
+        return redirect()->route('users')->with('success', 'User updated successfully');
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users')->with('success', 'User deleted successfully');
+    }
+
    
 
 }

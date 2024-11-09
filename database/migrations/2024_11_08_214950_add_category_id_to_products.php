@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('products', function (Blueprint $table) {
-             $table->foreignId('category_id')
-                  ->constrained('categories')
-                  ->onDelete('restrict')->after('qty');
-        });
+       Schema::table('products', function (Blueprint $table) {
+            $table->foreign('category_id')
+          ->references('id')->on('categories')
+          ->onDelete('cascade');
+    });
+
     }
 
     /**

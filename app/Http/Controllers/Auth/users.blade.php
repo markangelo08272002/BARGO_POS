@@ -92,46 +92,93 @@
             
           </ul>
         </aside>
+<div class="container">
+    <h1>Registered Users</h1>
 
-<div class="container-xxl flex-grow-1 container-p-y">
-   <!-- Flash Success Message -->
-    @if(session('success'))
-        <div class="alert alert-success" role="alert"> 
-            {{ session('success') }}
-        </div>
-    @endif
+    <!-- User Table -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>ID Number</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($users as $user)
+                <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->id_number }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>
+                        <!-- Edit Button -->
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ $user->id }}">Edit</button>
 
-    <div class="row">
-        <div class="col-xxl-8 mb-6 order-0">
-            <div class="card">
-                <div class="d-flex align-items-start row">
-                  <div class="col-sm-7">
-                    <div class="card-body">
-                      <h5 class="card-title text-primary mb-3">Congratulations {{ auth()->user()->name }} 🎉</h5>
-                      
+                        <!-- Delete Button -->
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $user->id }}">Delete</button>
+                    </td>
+                </tr>
 
-                      <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
+                <!-- Edit Modal -->
+                <div class="modal fade" id="editModal{{ $user->id }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editModalLabel">Edit User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{{ route('users.update', $user->id) }}" method="POST">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" name="name" value="{{ $user->name }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="id_number" class="form-label">ID Number</label>
+                                        <input type="text" class="form-control" name="id_number" value="{{ $user->id_number }}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" name="email" value="{{ $user->email }}" required>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                  </div>
-                  <div class="col-sm-5 text-center text-sm-left">
-                    <div class="card-body pb-0 px-0 px-md-6">
-                      <img
-                        src="../assets/img/illustrations/man-with-laptop.png"
-                        height="175"
-                        class="scaleX-n1-rtl"
-                        alt="View Badge User" />
-                    </div>
-              </div>
-        </div>
-    </div>
-</div>
-<div class="container py-4">
-    <header class="pb-3 mb-4 border-bottom">
-        <div class="row">
-        </div>
-    </header>
+                </div>
 
-   
-   
+                <!-- Delete Modal -->
+                <div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel">Delete User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="{{ route('users.delete', $user->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <div class="modal-body">
+                                    Are you sure you want to delete {{ $user->name }}?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </tbody>
+    </table>
 </div>
 @endsection
