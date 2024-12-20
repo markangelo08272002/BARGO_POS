@@ -3,7 +3,7 @@
 @section('content')
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -28,7 +28,12 @@
                   
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bold ms-2">BARGO POS</span>
+             <span class="app-brand demo menu-text fw-bold ms-2">
+              <img src="{{ asset('assets/img/slsu-logo.png') }}" alt="Logo" class="logo-img" style="width: 200px; height: auto;padding-right: 50px">
+              
+          </span>
+
+
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -44,7 +49,7 @@
               <a href="{{ route('dashboard')}}" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
-                <span class="badge rounded-pill bg-danger ms-auto">5</span>
+                <span class="badge rounded-pill bg-danger ms-auto">4</span>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item active">
@@ -102,6 +107,7 @@
                   <div class="col-sm-7">
                     <div class="card-body">
                       <h5 class="card-title text-primary mb-3">Congratulations {{ auth()->user()->name }} 🎉</h5>
+                      
                       
 
                       <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>

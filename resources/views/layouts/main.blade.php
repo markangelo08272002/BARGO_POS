@@ -29,6 +29,8 @@
       rel="stylesheet" />
 
     <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
@@ -122,10 +124,11 @@
                       <div class="dropdown-divider my-1"></div>
                     </li>
                     <li>
-                     <a class="dropdown-item" href="{{ route('logout') }}" 
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                   {{ __('Logout') }}
-                </a>
+                    <a class="dropdown-item" href="{{ route('logout') }}" 
+                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                          <i class="bi bi-box-arrow-right"></i> {{ __('Logout') }}
+                      </a>
+
 
                 <!-- Hidden Logout Form -->
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

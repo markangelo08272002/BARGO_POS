@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-  
+use App\Http\Controllers\DashboardController;
+
 
 Route::get('/', function () {
     return redirect()->route('login');

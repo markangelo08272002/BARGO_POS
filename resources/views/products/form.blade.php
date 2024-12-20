@@ -29,8 +29,10 @@
                   </defs>
                   
                 </svg>
-              </span>
-              <span class="app-brand-text demo menu-text fw-bold ms-2">BARGO POS</span>
+              <span class="app-brand demo menu-text fw-bold ms-2">
+              <img src="{{ asset('assets/img/slsu-logo.png') }}" alt="Logo" class="logo-img" style="width: 200px; height: auto;padding-right: 50px;margin-bottom: 30px">
+              
+          </span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
