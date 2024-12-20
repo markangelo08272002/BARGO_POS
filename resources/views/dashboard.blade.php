@@ -49,7 +49,7 @@
               <ul class="menu-sub">
                 <li class="menu-item active">
                   <a href="{{ route('dashboard')}}" class="menu-link">
-                    <div class="text-truncate" data-i18n="Analytics">Analytics</div>
+                    <div class="text-truncate" data-i18n="Analytics">Dashboard</div>
                   </a>
                 </li>
                 <li class="menu-item">
@@ -64,21 +64,15 @@
                   <a
                     href="{{ route('categories.index') }}"
                     class="menu-link">
-                    <div class="text-truncate" data-i18n="eCommerce">eCommerce</div>
-                    <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
+                    <div class="text-truncate">Categories</div>
+                    
                   </a>
                 </li>
-                <li class="menu-item">
+                <li class="menu-item ">
                   <a
                     href="{{ route('users') }}"
                     class="menu-link">
-                    <div class="text-truncate" data-i18n="Logistics">Logistics</div>
-                    <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="app-academy-dashboard.html" target="_blank" class="menu-link">
-                    <div class="text-truncate" data-i18n="Academy">Academy</div>
+                    <div class="text-truncate" data-i18n="Logistics">Users</div>
                     <div class="badge rounded-pill bg-label-primary text-uppercase fs-tiny ms-auto">Pro</div>
                   </a>
                 </li>
