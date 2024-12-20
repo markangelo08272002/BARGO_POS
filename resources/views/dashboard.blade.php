@@ -106,11 +106,7 @@
                 <div class="d-flex align-items-start row">
                   <div class="col-sm-7">
                     <div class="card-body">
-                      <h5 class="card-title text-primary mb-3">Congratulations {{ auth()->user()->name }} 🎉</h5>
-                      
-                      
-
-                      <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
+                      <h5 class="card-title text-primary mb-3">WELCOME BACK !! <br>{{ auth()->user()->name }} 🎉</h5>
                     </div>
                   </div>
                   <div class="col-sm-5 text-center text-sm-left">

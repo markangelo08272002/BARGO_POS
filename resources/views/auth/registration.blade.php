@@ -62,12 +62,15 @@
               <div class="app-brand justify-content-center mb-6">
                 <a href="index.html" class="app-brand-link gap-2">
                   
-                  <span class="app-brand-text demo text-heading fw-bold">Registration - BARGO POS</span>
+                  <span class="app-brand demo menu-text fw-bold ms-2">
+              <img src="{{ asset('assets/img/slsu-logo.png') }}" alt="Logo" class="logo-img" style="width: 200px; height: auto;padding-right: 50px">
+              
+          </span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-1">Adventure starts here 🚀</h4>
-              <p class="mb-6">Make your app management easy and fun!</p>
+               <h4 class="mb-1">Welcome to Bargo Pos! 👋</h4>
+              <p class="mb-6">Please sign-up to create an account</p>
 
               <form class="mb-6" method="POST" action="{{ route('register.post') }}">
               @csrf

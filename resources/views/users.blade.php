@@ -47,7 +47,7 @@
               <a href="{{ route('dashboard')}}" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
-                <span class="badge rounded-pill bg-danger ms-auto">5</span>
+                <span class="badge rounded-pill bg-danger ms-auto">4</span>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item ">
@@ -89,12 +89,19 @@
             
           </ul>
         </aside>    
-<div class="container">
-    <h1>Registered Users</h1>
-
+<div class="container py-4">
+    <br><br>
+<div class="card">
+                <h5 class="card-header">Categories</h5>
+                @if(session('success'))
+ <div class="alert alert-success" role="alert"> 
+    {{ session('success') }}
+</div>
+@endif
     <!-- User Table -->
-    <table class="table">
-        <thead>
+    <div class="table-responsive text-nowrap">
+                  <table class="table">
+                    <thead class="table-dark">
             <tr>
                 <th>ID</th>
                 <th>Name</th>

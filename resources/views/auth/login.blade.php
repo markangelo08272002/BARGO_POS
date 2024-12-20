@@ -63,7 +63,10 @@
                 <a href="#" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                   </span>
-                  <span class="app-brand-text demo text-heading fw-bold">Login - Bargo Pos</span>
+                  <span class="app-brand demo menu-text fw-bold ms-2">
+              <img src="{{ asset('assets/img/slsu-logo.png') }}" alt="Logo" class="logo-img" style="width: 200px; height: auto;padding-right: 50px">
+              
+          </span>
                 </a>
               </div>
               <!-- /Logo -->

@@ -47,7 +47,7 @@
               <a href="{{ route('dashboard')}}" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
-                <span class="badge rounded-pill bg-danger ms-auto">5</span>
+                <span class="badge rounded-pill bg-danger ms-auto">4</span>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item ">

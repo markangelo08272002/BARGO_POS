@@ -11,6 +11,7 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
   
+  //login and registration
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
@@ -25,8 +26,10 @@ Route::delete('users/delete/{id}', [AuthController::class, 'deleteUser'])->name(
 
 //Products
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); // Route for creating a product
-Route::post('/products', [ProductController::class, 'store'])->name('products.store'); // Route for storing a new product
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); 
+// Route for creating a product
+Route::post('/products', [ProductController::class, 'store'])->name('products.store'); 
+// Route for storing a new product
 Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
 Route::put('products/{id}', [ProductController::class, 'update'])->name('products.update');
 Route::resource('products', ProductController::class);

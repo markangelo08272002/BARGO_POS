@@ -48,7 +48,7 @@
               <a href="{{ route('dashboard')}}" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
                 <div class="text-truncate" data-i18n="Dashboards">Dashboards</div>
-                <span class="badge rounded-pill bg-danger ms-auto">5</span>
+                <span class="badge rounded-pill bg-danger ms-auto">4</span>
               </a>
               <ul class="menu-sub">
                 <li class="menu-item ">
@@ -100,7 +100,7 @@
             @endif
             <div class="col-md-6">
                   <div class="card">
-                    <h5 class="card-header">{{ isset($product) ? 'Edit Product' : 'Create Product' }}</h5>
+                    <center><h5 class="card-header">{{ isset($product) ? 'Edit Product' : 'Create Product' }}</h5></center> 
                     <div class="card-body">
                       <div class="form-floating">
                        <input placeholder="unsay name sa product" type="text" class="form-control" id="product_name" name="product_name" value="{{ old('product_name', $product->product_name ?? '') }}" required>
