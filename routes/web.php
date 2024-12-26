@@ -1,56 +1,43 @@
 <?php 
 use Illuminate\Support\Facades\Route;
-  
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardController;
 
-
+// Redirect to login if accessing root
 Route::get('/', function () {
     return redirect()->route('login');
 });
-  
-  //login and registration
+
+// Login and registration routes
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
-Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard'); 
+Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth'); 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::delete('/products/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('products.destroy');
+
+// User management routes
 Route::get('users', [AuthController::class, 'showUsers'])->name('users')->middleware('auth');
-Route::post('users/update/{id}', [AuthController::class, 'updateUser'])->name('users.update');
-Route::delete('users/delete/{id}', [AuthController::class, 'deleteUser'])->name('users.delete');
+Route::post('users/update/{id}', [AuthController::class, 'updateUser'])->name('users.update')->middleware('auth');
+Route::delete('users/delete/{id}', [AuthController::class, 'deleteUser'])->name('users.delete')->middleware('auth');
 
+// Grouping product routes with auth middleware
+Route::middleware('auth')->prefix('products')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('products.index');
+    Route::get('/create', [ProductController::class, 'create'])->name('products.create'); 
+    Route::post('/', [ProductController::class, 'store'])->name('products.store'); 
+    Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
+});
 
-//Products
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create'); 
-// Route for creating a product
-Route::post('/products', [ProductController::class, 'store'])->name('products.store'); 
-// Route for storing a new product
-Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
-Route::put('products/{id}', [ProductController::class, 'update'])->name('products.update');
-Route::resource('products', ProductController::class);
-
-//categories
-Route::prefix('categories')->group(function () {
-    // Correct the GET route for listing categories
+// Grouping category routes with auth middleware
+Route::middleware('auth')->prefix('categories')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
-
-    // Add new category form
     Route::get('/create', [CategoryController::class, 'create'])->name('categories.create');
-    
-    // Store new category
     Route::post('/', [CategoryController::class, 'store'])->name('categories.store');
-    
-    // Edit category form
     Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
-    
-    // Update category
     Route::put('/{id}', [CategoryController::class, 'update'])->name('categories.update');
-    
-    // Delete category
     Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 });

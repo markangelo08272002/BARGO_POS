@@ -18,8 +18,7 @@
 
     <meta name="description" content="" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -98,9 +97,10 @@
                 </div>
                 <div class="mb-8">
                   <div class="d-flex justify-content-between mt-8">
-                    <div class="form-check mb-0 ms-2">
-                      <input class="form-check-input" type="checkbox" id="remember-me" />
-                      <label class="form-check-label" for="remember-me"> Remember Me </label>
+                     <div class="form-check mb-0 ms-2">
+                      <label class="form-check-label" for="remember-me">
+                        <input  class="form-check-input" name="remember" type="checkbox" name="remember"> Remember Me
+                    </label>    
                     </div>
                   </div>
                 </div>

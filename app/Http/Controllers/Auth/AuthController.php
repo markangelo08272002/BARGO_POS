@@ -1,67 +1,59 @@
 <?php
-  
-namespace App\Http\Controllers\Auth;
-  
+  namespace App\Http\Controllers\Auth;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\User;
 use Hash;
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
-  
+
 class AuthController extends Controller
 {
     /**
      * Show login form.
-     *
-     * @return View
      */
-    public function index(): View
+    public function index()
     {
         return view('auth.login');
     }  
-      
+
     /**
      * Show registration form.
-     *
-     * @return View
      */
-    public function registration(): View
+    public function registration()
     {
         return view('auth.registration');
     }
-      
+
     /**
      * Handle login request.
-     *
-     * @return RedirectResponse
      */
-    public function postLogin(Request $request): RedirectResponse
+    public function postLogin(Request $request)
     {
+        // Validate input
         $request->validate([
             'id_number' => 'required',
             'password' => 'required',
         ]);
 
         $credentials = $request->only('id_number', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                        ->withSuccess('You have successfully logged in');
+        $remember = $request->has('remember'); // Check the "Remember Me" checkbox
+
+        // Attempt login with credentials and "remember" parameter
+        if (Auth::attempt($credentials, $remember)) {
+            return redirect()->route('dashboard')->withSuccess('You have successfully logged in.');
         }
 
-        return redirect("login")->withError('Oops! You have entered invalid credentials');
+        // Redirect back with an error if login fails
+        return redirect()->route('login')->withErrors('Invalid ID Number or Password.');
     }
 
     /**
      * Handle registration request.
-     *
-     * @return RedirectResponse
      */
     public function postRegistration(Request $request)
-    {  
-        // Validate the input data
+    {
         $request->validate([
             'name' => 'required|string|max:255',
             'id_number' => 'required|string|unique:users|regex:/^\d{7}-\d{1}$/',
@@ -69,16 +61,18 @@ class AuthController extends Controller
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        // Prepare data for user creation
         $data = $request->all();
-        
-        // Create user and log them in
         $user = $this->create($data);
+
+        // Log the user in after registration
         Auth::login($user);
 
-        return redirect("dashboard")->withSuccess('Great! You have successfully registered');
+        return redirect("dashboard")->withSuccess('Great! You have successfully registered.');
     }
-    
+
+    /**
+     * Create a new user instance.
+     */
     public function create(array $data)
     {
         return User::create([
@@ -90,37 +84,40 @@ class AuthController extends Controller
     }
 
     /**
-     * Show the dashboard.
-     *
-     * @return View|RedirectResponse
+     * Show the dashboard if logged in.
      */
     public function dashboard()
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             return view('dashboard');
         }
-  
-        return redirect("login")->withSuccess('Opps! You do not have access');
+
+        return redirect("login")->withSuccess('Oops! You do not have access.');
     }
 
     /**
      * Logout the user.
-     *
-     * @return RedirectResponse
      */
-    public function logout(): RedirectResponse
+    public function logout()
     {
-            Session::flush();  // Optionally clear the session
-            Auth::logout();    // Log the user out
+        Session::flush(); // Clear session
+        Auth::logout();   // Log out the user
 
-            return Redirect('login');  // Redirect to login page after logout
+        return redirect('login'); // Redirect to login page
     }
-   public function showUsers()
-{
-    $users = User::all();
-    return view('users', compact('users')); // Make sure this matches the file path in resources/views/auth/
-}
 
+    /**
+     * Show the list of users.
+     */
+    public function showUsers()
+    {
+        $users = User::all();
+        return view('users', compact('users'));
+    }
+
+    /**
+     * Update a user.
+     */
     public function updateUser(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -129,17 +126,17 @@ class AuthController extends Controller
         $user->email = $request->input('email');
         $user->save();
 
-        return redirect()->route('users')->with('success', 'User updated successfully');
+        return redirect()->route('users')->with('success', 'User updated successfully.');
     }
 
+    /**
+     * Delete a user.
+     */
     public function deleteUser($id)
     {
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('users')->with('success', 'User deleted successfully');
+        return redirect()->route('users')->with('success', 'User deleted successfully.');
     }
-
-   
-
 }
