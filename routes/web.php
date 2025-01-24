@@ -1,8 +1,11 @@
 <?php 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Models\User;
+use App\Http\Controllers\DashboardController; // Ensure you import the DashboardController
 
 // Redirect to login if accessing root
 Route::get('/', function () {
@@ -14,7 +17,6 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
-Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard')->middleware('auth'); 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // User management routes
@@ -41,3 +43,5 @@ Route::middleware('auth')->prefix('categories')->group(function () {
     Route::put('/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 });
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
